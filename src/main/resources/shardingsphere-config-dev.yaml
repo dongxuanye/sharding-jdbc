@@ -1,0 +1,51 @@
+dataSources:
+  db0:
+    dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sharding?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  db1:
+    dataSourceClassName: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sharding2?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+#配置分库分表规则
+rules:
+- !SHARDING
+  keyGenerators:
+    snowflake:
+      type: SNOWFLAKE
+      props:
+        worker-id: 1
+  shardingAlgorithms:
+    db_alg:
+      type: INLINE
+      props:
+        algorithm-expression: db${cid % 2}
+    course_tbl_alg:
+      type: INLINE
+      props:
+        algorithm-expression: course_${cid % 2}
+  tables:
+    course:
+      actualDataNodes: db${0..1}.course_${0..1}
+      keyGenerateStrategy:
+        column: cid
+        keyGeneratorName: snowflake
+      # 分库策略--MOD
+      databaseStrategy:
+        standard:
+          shardingColumn: cid
+          shardingAlgorithmName: db_alg
+
+      # 分表策略--Groovy表达式
+      tableStrategy:
+        standard:
+          shardingColumn: cid # 分片键
+          shardingAlgorithmName: course_tbl_alg
+props:
+  #是否打印分表SQL
+  sql-show: true
+  sql-comment-parse-enabled: true

@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: sharding-jdbc-use
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:shardingsphere-config-dev.yaml
+#
+## ------------------数据源配置------------------
+#  shardingsphere:
+#    datasource:
+#      names: db0,db1
+#      db0:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://192.168.1.100:3306/sharding?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+#        username: root
+#        password: 123456
+#      db1:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://192.168.1.100:3306/sharding2?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+#        username: root
+#        password: 123456
+#    # 配置实践分片节点: db0.course_1,db0.course_2,db1.course_1,db1.course_2
+#    rules:
+#      sharding:
+#        sharding-algorithms:
+#          course_db_alg:
+#            type: MOD
+#            props:
+#              sharding-count: 2
+#          course_tbl_alg:
+#            type: INLINE
+#            props:
+#              algorithm-expression: course_${cid % 2+1}
+#        tables:
+#          course:
+#            key-generate-strategy:
+#              column: cid
+#              key-generator-name: alg_snowflake
+#            actual-data-nodes: db${0..1}.course_${0..1}
+#            # 分库策略--MOD
+#            database-strategy:
+#              standard:
+#                sharding-column: cid
+#                sharding-algorithm-name: course_db_alg
+#
+#            # 分表策略--Groovy表达式
+#            table-strategy:
+#              standard:
+#                sharding-column: cid # 分片键
+#                sharding-algorithm-name: course_tbl_alg
+#        # 分布式序列算法配置
+#        # 雪花算法生成Long类型的主键
+#        key-generators:
+#          alg_snowflake:
+#            type: SNOWFLAKE
+#            props:
+#              worker-id: 1
+#
+#

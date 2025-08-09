@@ -1,0 +1,13 @@
+server:
+  port: 8013
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    # MyBatis 配置
+    map-underscore-to-camel-case: true
+    # 仅在开发环境打印日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  profiles:
+    active: dev
