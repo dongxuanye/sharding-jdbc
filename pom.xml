@@ -50,11 +50,6 @@
             <artifactId>druid</artifactId>
             <version>1.2.24</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shardingsphere</groupId>-->
-<!--            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>-->
-<!--            <version>5.2.1</version>-->
-<!--        </dependency>-->
         <!-- 升级后现依赖 -->
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
@@ -66,9 +61,6 @@
             <artifactId>snakeyaml</artifactId>
             <version>2.2</version>
         </dependency>
-
-
-
 
         <!-- MySQL 驱动（建议用新版驱动） -->
         <dependency>
@@ -90,31 +82,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        &lt;!&ndash; JUnit Jupiter API &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            <version>5.10.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; JUnit Jupiter Engine &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-engine</artifactId>-->
-<!--            <version>5.10.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; JUnit Platform Launcher &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.platform</groupId>-->
-<!--            <artifactId>junit-platform-launcher</artifactId>-->
-<!--            <version>1.10.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-
     </dependencies>
 
     <build>
